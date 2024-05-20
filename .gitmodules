@@ -1,0 +1,12 @@
+[submodule "nginx"]
+	path = nginx
+	url = https://github.com/nginx/nginx.git
+	branch = master
+[submodule "rustls-openssl-compat"]
+	path = rustls-openssl-compat
+	url = https://github.com/rustls/rustls-openssl-compat.git
+	branch = main
+[submodule "openssl-3.3.3"]
+	path = openssl-3.3.0
+	url = https://github.com/openssl/openssl.git
+	branch = master

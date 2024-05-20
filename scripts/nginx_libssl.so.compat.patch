@@ -1,0 +1,28 @@
+diff --git a/auto/lib/openssl/conf b/auto/lib/openssl/conf
+index fdf430df..13c3ef91 100644
+--- a/auto/lib/openssl/conf
++++ b/auto/lib/openssl/conf
+@@ -42,8 +42,8 @@ if [ $OPENSSL != NONE ]; then
+         *)
+             CORE_INCS="$CORE_INCS $OPENSSL/.openssl/include"
+             CORE_DEPS="$CORE_DEPS $OPENSSL/.openssl/include/openssl/ssl.h"
+-            CORE_LIBS="$CORE_LIBS $OPENSSL/.openssl/lib/libssl.a"
+-            CORE_LIBS="$CORE_LIBS $OPENSSL/.openssl/lib/libcrypto.a"
++            CORE_LIBS="$CORE_LIBS $OPENSSL/.openssl/lib/libssl.so"
++            CORE_LIBS="$CORE_LIBS $OPENSSL/.openssl/lib/libcrypto.so"
+             CORE_LIBS="$CORE_LIBS $NGX_LIBDL"
+             CORE_LIBS="$CORE_LIBS $NGX_LIBPTHREAD"
+ 
+diff --git a/auto/lib/openssl/make b/auto/lib/openssl/make
+index a7e9369e..700f2b34 100644
+--- a/auto/lib/openssl/make
++++ b/auto/lib/openssl/make
+@@ -64,7 +64,7 @@ END
+ $OPENSSL/.openssl/include/openssl/ssl.h:	$NGX_MAKEFILE
+ 	cd $OPENSSL \\
+ 	&& if [ -f Makefile ]; then \$(MAKE) clean; fi \\
+-	&& ./config --prefix=$ngx_prefix no-shared no-threads $OPENSSL_OPT \\
++	&& ./config --prefix=$ngx_prefix no-threads $OPENSSL_OPT \\
+ 	&& \$(MAKE) \\
+ 	&& \$(MAKE) install_sw LIBDIR=lib
+ 
