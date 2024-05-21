@@ -16,7 +16,7 @@ build_libssl() {
 build_openssl3() {
     cd $ROOT/openssl-3.3.0
     [[ -f Makefile ]] && make clean
-    ./config no-threads
+    ./config no-threads --debug
     make -j$(nproc)
     cp libcrypto.so $ROOT/output/libs/libcrypto.so
     cp libcrypto.so $ROOT/output/libs/libcrypto.so
@@ -45,4 +45,4 @@ compile_nginx_compat() {
 build_libssl
 build_openssl3
 compile_nginx_compat
-output/nginx_ssl3_compat/sbin/nginx -p "$ROOT/output/nginx_ssl3_compat" -c "conf/nginx.conf"
+./output/nginx_ssl3_compat/sbin/nginx -p "$ROOT/output/nginx_ssl3_compat" -c "conf/nginx.conf"
